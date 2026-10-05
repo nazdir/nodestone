@@ -34,6 +34,24 @@ The server will then listen on port 8080 by default.
 gcloud builds submit --tag gcr.io/<your image name> && gcloud beta run deploy --image gcr.io/<your image name>
 ```
 
+### Inside Google Cloud Functions (2nd gen)
+
+Build the function source and deploy it as an authenticated HTTP function:
+
+```shell
+yarn run function:build
+gcloud functions deploy nodestone \
+  --gen2 \
+  --runtime=nodejs22 \
+  --region=us-central1 \
+  --source=dist \
+  --entry-point=nodestone \
+  --trigger-http \
+  --no-allow-unauthenticated
+```
+
+The deploy command above keeps the function restricted to authenticated callers.
+
 ### Inside your Node.JS project
 
 ```shell

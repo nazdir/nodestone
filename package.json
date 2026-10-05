@@ -9,15 +9,19 @@
   },
   "scripts": {
     "express:start": "rimraf dist && tsc -p tsconfig.json && node dist/lib/server.js",
+    "function:build": "rimraf dist && tsc -p tsconfig.json && yarn run function:copyfiles",
+    "function:copyfiles": "copyfiles package.json README.md yarn.lock dist",
     "copyfiles": "copyfiles package.json README.md dist",
     "release": "rimraf dist && tsc -p tsconfig.json && yarn run copyfiles && npm publish ./dist"
   },
   "dependencies": {
     "@types/express": "^4.17.21",
+    "@google-cloud/functions-framework": "^3.4.5",
     "axios": "^1.15.0",
     "express": "^5.2.1",
     "linkedom": "^0.16.11",
     "lodash": "^4.18.1",
+    "lodestone-css-selectors": "xivapi/lodestone-css-selectors",
     "pino": "^8.19.0",
     "pino-http": "^9.0.0",
     "regex-translator": "^0.2.8",

@@ -9,7 +9,7 @@ import { FCMembers } from "./freecompany/members";
 import { CharacterSearch } from "./search/character-search";
 import { FreeCompanySearch } from "./search/freecompany-search";
 
-const app = express();
+export const app = express();
 
 const httpLogger = pinoHttp({ logger });
 app.use(httpLogger);
@@ -116,8 +116,10 @@ app.get("/FreeCompany/:fcId", async (req, res) => {
   }
 });
 
-const port = process.env.PORT || 8080;
-const server = app.listen(port, () => {
-  logger.info(`Listening at http://localhost:${port}`);
-});
-server.on("error", console.error);
+if (require.main === module) {
+  const port = process.env.PORT || 8080;
+  const server = app.listen(port, () => {
+    logger.info(`Listening at http://localhost:${port}`);
+  });
+  server.on("error", console.error);
+}

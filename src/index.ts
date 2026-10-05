@@ -5,3 +5,4 @@ export * from "./freecompany/freecompany";
 export * from "./freecompany/members";
 export * from "./search/character-search";
 export * from "./search/freecompany-search";
+export { nodestone } from "./function";
