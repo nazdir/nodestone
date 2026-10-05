@@ -36,7 +36,7 @@ gcloud builds submit --tag gcr.io/<your image name> && gcloud beta run deploy --
 
 ### Inside Google Cloud Functions (2nd gen)
 
-Build the function source and deploy it as an authenticated HTTP function:
+Build the function source and deploy it as a publicly accessible HTTP function:
 
 ```shell
 yarn run function:build
@@ -47,10 +47,10 @@ gcloud functions deploy nodestone \
   --source=dist \
   --entry-point=nodestone \
   --trigger-http \
-  --no-allow-unauthenticated
+  --allow-unauthenticated
 ```
 
-The deploy command above keeps the function restricted to authenticated callers.
+The deploy command above allows unauthenticated callers to invoke the function.
 
 ### Inside your Node.JS project
 
